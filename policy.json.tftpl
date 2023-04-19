@@ -5,12 +5,7 @@
             "Sid": "AllowDepartmentEC2Management",
             "Effect": "Allow",
             "Action": "ec2:*",
-            "Resource": "*",
-            "Condition": {
-                "StringEquals": {
-                    "ec2\:ResourceTag/department": "${aws\:PrincipalTag/department}"
-                }
-            }
+            "Resource": "*"
         },
         {
             "Sid": "AllowEC2DescribeAll",
