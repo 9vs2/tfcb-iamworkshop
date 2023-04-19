@@ -1,0 +1,35 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowDepartmentEC2Management",
+            "Effect": "Allow",
+            "Action": "ec2:*",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "ec2\:ResourceTag/department": "${aws\:PrincipalTag/department}"
+                }
+            }
+        },
+        {
+            "Sid": "AllowEC2DescribeAll",
+            "Effect": "Allow",
+            "Action": "ec2\:Describe*",
+            "Resource": "*"
+        },
+        {
+            "Sid": "DenyTagManagement",
+            "Effect": "Deny",
+            "Action": [
+                "iam\:UntagUser",
+                "iam\:UntagRole",
+                "ec2\:DeleteTags",
+                "ec2\:CreateTags",
+                "iam\:TagRole",
+                "iam\:TagUser"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
