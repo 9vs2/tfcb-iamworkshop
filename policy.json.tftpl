@@ -10,19 +10,19 @@
         {
             "Sid": "AllowEC2DescribeAll",
             "Effect": "Allow",
-            "Action": "ec2\:Describe*",
+            "Action": "ec2:Describe*",
             "Resource": "*"
         },
         {
             "Sid": "DenyTagManagement",
             "Effect": "Deny",
             "Action": [
-                "iam\:UntagUser",
-                "iam\:UntagRole",
-                "ec2\:DeleteTags",
-                "ec2\:CreateTags",
-                "iam\:TagRole",
-                "iam\:TagUser"
+                "iam:UntagUser",
+                "iam:UntagRole",
+                "ec2:DeleteTags",
+                "ec2:CreateTags",
+                "iam:TagRole",
+                "iam:TagUser"
             ],
             "Resource": "*"
         }
