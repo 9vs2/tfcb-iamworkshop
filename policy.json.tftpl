@@ -8,7 +8,7 @@
             "Resource": "*",
             "Condition": {
                 "StringEquals": {
-                    "ec2:ResourceTag/department": "${aws:PrincipalTag/department}"
+                    "ec2:ResourceTag/department": "$${aws:PrincipalTag/department}"
                 }
             }
         },
