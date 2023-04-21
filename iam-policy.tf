@@ -62,7 +62,6 @@ resource "aws_iam_policy" "pawsiamworkshop2" {
     }
   }
 }
-
 EOF
 }
 # }
