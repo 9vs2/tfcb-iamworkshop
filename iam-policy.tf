@@ -53,11 +53,11 @@ resource "aws_iam_policy" "pawsiamworkshop2" {
   "Version": "2012-10-17",
   "Statement": {
     "Effect": "Allow",
-    "Action": "sts\\:AssumeRole",
+    "Action": "sts:AssumeRole",
     "Resource": "*",
     "Condition": {
         "StringLike": {
-            "iam\\:ResourceTag/contractors-assume-role": "true"
+            "iam:ResourceTag/contractors-assume-role": "true"
         }
     }
   }
