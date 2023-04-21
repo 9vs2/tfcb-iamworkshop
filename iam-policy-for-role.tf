@@ -1,4 +1,4 @@
-resource "aws_iam_policy" "policy" {
+resource "aws_iam_policy" "policy2" {
   name        = "awsworkshop-role-assumption-${var.resourcesuffix}"
   path        = "/"
   description = "My test policy"
