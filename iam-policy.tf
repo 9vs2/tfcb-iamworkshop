@@ -49,18 +49,15 @@ resource "aws_iam_policy" "pawsiamworkshop2" {
   description = "My test policy"
   policy = <<EOF
 {
-  "Sid": "TagCheck",
   "Version": "2012-10-17",
-  "Statement": {
-    "Effect": "Allow",
-    "Action": "sts:AssumeRole",
-    "Resource": "*",
-    "Condition": {
-        "StringLike": {
-            "iam:ResourceTag/contractors-assume-role": "true"
-        }
+  "Statement": [
+    {
+        "Effect": "Allow",
+        "Action": "sts\:AssumeRole",
+        "Resource": "*",
+        "Condition": {"StringLike": {"iam\:ResourceTag/contractors-assume-role": "true"}}
     }
-  }
+  ]
 }
 EOF
 }
