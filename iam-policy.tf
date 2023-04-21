@@ -43,7 +43,7 @@ resource "aws_iam_policy" "awsiamworkshop1" {
 EOF
 }
 
-resource "aws_iam_policy" "policy-for-role-assumption" {
+resource "aws_iam_policy" "pawsiamworkshop2" {
   name        = "awsworkshop-role-assumption-${var.resourcesuffix}"
   path        = "/"
   description = "My test policy"
