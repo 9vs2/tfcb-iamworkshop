@@ -44,7 +44,7 @@ EOF
 }
 
 resource "aws_iam_policy" "pawsiamworkshop2" {
-  name        = "awsworkshop-role-assumption-${var.resourcesuffix}"
+  name        = "awsworkshop2-${var.resourcesuffix}"
   path        = "/"
   description = "My test policy"
   policy = <<EOF
