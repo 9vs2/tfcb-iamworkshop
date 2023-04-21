@@ -3,5 +3,5 @@ resource "aws_iam_policy" "policy2" {
   path        = "/"
   description = "My test policy"
 
-  policy = templatefile("./aws-policy-json/policy.json-contractorroleassumption.tftpl",{})
+  policy = templatefile("policy.json-contractorroleassumption.tftpl",{})
 }
