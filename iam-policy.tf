@@ -52,9 +52,9 @@ resource "aws_iam_policy" "policy-for-role-assumption" {
   "Version": "2012-10-17",
   "Statement": {
     "Effect": "Allow",
-    "Action": "sts:AssumeRole",
+    "Action": "sts\\:AssumeRole",
     "Resource": "*",
-    "Condition": {"StringLike": {"iam:ResourceTag/contractors-assume-role": "true"}}
+    "Condition": {"StringLike": {"iam\\:ResourceTag/contractors-assume-role": "true"}}
   }
 }
 
