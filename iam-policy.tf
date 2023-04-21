@@ -3,64 +3,26 @@ resource "aws_iam_policy" "awsiamworkshop1" {
   path        = "/"
   description = "My test policy"
 
-#   policy = templatefile("policy.json.tftpl",{})
-  policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "AllowDepartmentEC2Management",
-            "Effect": "Allow",
-            "Action": "ec2:*",
-            "Resource": "*",
-            "Condition": {
-                "StringEquals": {
-                    "ec2:ResourceTag/department": "$${aws:PrincipalTag/department}"
-                }
-            }
-        },
-        {
-            "Sid": "AllowEC2DescribeAll",
-            "Effect": "Allow",
-            "Action": "ec2:Describe*",
-            "Resource": "*"
-        },
-        {
-            "Sid": "DenyTagManagement",
-            "Effect": "Deny",
-            "Action": [
-                "iam:UntagUser",
-                "iam:UntagRole",
-                "ec2:DeleteTags",
-                "ec2:CreateTags",
-                "iam:TagRole",
-                "iam:TagUser"
-            ],
-            "Resource": "*"
-        }
-    ]
+  policy = templatefile("policy.json.tftpl",{})
 }
-EOF
-}
-
-resource "aws_iam_policy" "pawsiamworkshop2" {
-  name        = "awsworkshop2-${var.resourcesuffix}"
-  path        = "/"
-  description = "My test policy"
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-        "Effect": "Allow",
-        "Action": "sts:AssumeRole",
-        "Resource": "*",
-        "Condition": {"StringLike": {"iam:ResourceTag/contractors-assume-role": "true"}}
-    }
-  ]
-}
-EOF
-}
+# resource "aws_iam_policy" "pawsiamworkshop2" {
+#   name        = "awsworkshop2-${var.resourcesuffix}"
+#   path        = "/"
+#   description = "My test policy"
+#   policy = <<EOF
+# {
+#   "Version": "2012-10-17",
+#   "Statement": [
+#     {
+#         "Effect": "Allow",
+#         "Action": "sts:AssumeRole",
+#         "Resource": "*",
+#         "Condition": {"StringLike": {"iam:ResourceTag/contractors-assume-role": "true"}}
+#     }
+#   ]
+# }
+# EOF
+# }
 # }
 
 
