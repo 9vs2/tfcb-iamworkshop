@@ -2,11 +2,11 @@
 
 provider "archive" {}
 
-data "archive_file" "lambda" {
-  type        = "zip"
-  source_dir  = "../lambda-jsgu"
-  output_path = "lambda.zip"
-}
+# data "archive_file" "lambda" {
+#   type        = "zip"
+#   source_dir  = "../lambda-jsgu"
+#   output_path = "lambda.zip"
+# }
 
 data "aws_iam_policy_document" "AWSLambdaTrustPolicy" {
   version = "2012-10-17"
@@ -33,10 +33,12 @@ resource "aws_iam_role_policy_attachment" "iam_role_policy_attachment_lambda_bas
 resource "aws_lambda_function" "lambda_function" {
   code_signing_config_arn = ""
   description             = ""
-  filename                = data.archive_file.lambda.output_path
+  # filename                = data.archive_file.lambda.output_path
+  filename = "${data.external.lambda_to_zip.result.output_path}"
+  source_code_hash = "${data.external.lambda_to_zip.result.output_hash}"
   function_name           = "${var.resourcesuffix}-lambda-function"
   role                    = aws_iam_role.iam_role.arn
   handler                 = "index.handler"
   runtime                 = "nodejs14.x"
-  source_code_hash        = filebase64sha256(data.archive_file.lambda.output_path)
+  # source_code_hash        = filebase64sha256(data.archive_file.lambda.output_path)
 }
