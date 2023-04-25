@@ -34,7 +34,7 @@ resource "aws_instance" "webserver" {
     Name = "webserver"
   }
 
-  depends_on = ["data.terraform_remote_state.vpc.outputs.igw_id"]
+  depends_on = [data.terraform_remote_state.vpc.outputs.igw_id]
 }
 
 resource "aws_security_group" "webserversg" {
