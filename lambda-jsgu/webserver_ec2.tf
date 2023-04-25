@@ -10,7 +10,7 @@ data "terraform_remote_state" "vpc" {
 }
 
 resource "aws_instance" "webserver" {
-  ami                    = "ami-081511b9e3af53902"
+  ami                    = "ami-0a306845f8cfbd41a"
   instance_type          = "t3.micro"
   key_name               = "seoul"
   subnet_id              = data.terraform_remote_state.vpc.outputs.pub_subnet_id
