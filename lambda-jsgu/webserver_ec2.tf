@@ -9,13 +9,6 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
-# Terraform >= 0.12
-resource "aws_instance" "foo" {
-  # ...
-  subnet_id = data.terraform_remote_state.vpc.outputs.pub_subnet_id
-}
-
-
 resource "aws_instance" "webserver" {
   ami                    = "ami-081511b9e3af53902"
   instance_type          = "t3.micro"
