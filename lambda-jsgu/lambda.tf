@@ -1,6 +1,6 @@
 # terraform/main.tf
 
-provider "archive" {}
+# provider "archive" {}
 
 # data "archive_file" "lambda" {
 #   type        = "zip"
@@ -31,14 +31,17 @@ resource "aws_iam_role_policy_attachment" "iam_role_policy_attachment_lambda_bas
 }
 
 resource "aws_lambda_function" "lambda_function" {
-  code_signing_config_arn = ""
-  description             = ""
-  # filename                = data.archive_file.lambda.output_path
-  filename = "${data.external.lambda_to_zip.result.output_path}"
-  source_code_hash = "${data.external.lambda_to_zip.result.output_hash}"
+  filename = "lambda_function.zip"
+  # source_code_hash = "${data.external.lambda_to_zip.result.output_hash}"
   function_name           = "${var.resourcesuffix}-lambda-function"
   role                    = aws_iam_role.iam_role.arn
   handler                 = "index.handler"
   runtime                 = "nodejs14.x"
-  # source_code_hash        = filebase64sha256(data.archive_file.lambda.output_path)
+  timeout                 = 30
+  memory_size             = 128
+  source_code_hash = filebase64sha256("lambda_function.zip")
+}
+
+output "lambda_function_arn" {
+  value = aws_lambda_function.lambda_function.arn
 }
